@@ -8,6 +8,11 @@ contract TokenFaucet {
 
     uint public dispenseValue = 1 * 10**18;
 
+    modifier onlyOwner () {
+        require(msg.sender == owner);
+        _;
+    }
+
     constructor (ERC677TokenContract _tokenContract) public {
         owner = msg.sender;
         tokenContract = _tokenContract;
@@ -22,7 +27,7 @@ contract TokenFaucet {
         tokenContract.transfer(to, dispenseValue);
     }
 
-    function setDispenseValue (uint value) public {
+    function setDispenseValue (uint value) public onlyOwner() {
         dispenseValue = value;
     }
 }

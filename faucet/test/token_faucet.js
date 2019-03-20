@@ -90,5 +90,14 @@ contract('TokenFaucet', async (accounts) => {
     const balance = await token.balanceOf(account);
 
     assert.equal(balance, previousBalance.toNumber() + tokenAmount);
-  })
+  });
+
+  it('should allow only owner to change the dispensed value', async () => {
+    try {
+      await tokenFaucet.setDispenseValue(10e18, { from: accounts[1] });
+    } catch (e) {
+      return;
+    }
+    assert.fail('Should throw an exception.');
+  });
 });
