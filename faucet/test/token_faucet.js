@@ -75,4 +75,20 @@ contract('TokenFaucet', async (accounts) => {
 
     assert.equal(dispenseValue, tokenAmount);
   });
+
+  it('should send the dispensed value setted', async () => {
+    const tokenAmount = 2e18;
+    const account = accounts[1];
+
+    await tokenFaucet.setDispenseValue(tokenAmount);
+    await token.transfer(tokenFaucet.address, 10e18);
+
+    const previousBalance = await token.balanceOf(account);
+
+    await tokenFaucet.dispense(account);
+
+    const balance = await token.balanceOf(account);
+
+    assert.equal(balance, previousBalance.toNumber() + tokenAmount);
+  })
 });
