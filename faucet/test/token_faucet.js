@@ -37,4 +37,18 @@ contract('TokenFaucet', async (accounts) => {
 
     assert.equal(owner, accounts[0]);
   });
+
+  it('should recover all received tokens', async () => {
+    const tokenAmount = 10e18;
+
+    await token.transfer(tokenFaucet.address, tokenAmount);
+
+    const previousBalance = await token.balanceOf(accounts[0]);
+
+    await tokenFaucet.recover();
+
+    const balance = await token.balanceOf(accounts[0]);
+
+    assert.equal(balance, previousBalance.toNumber() + tokenAmount);
+  });
 });

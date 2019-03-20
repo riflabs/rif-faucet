@@ -10,4 +10,9 @@ contract TokenFaucet {
         owner = msg.sender;
         tokenContract = _tokenContract;
     }
+
+    function recover () public {
+        uint totalAmount = tokenContract.balanceOf(address(this));
+        tokenContract.transfer(owner, totalAmount);
+    }
 }
