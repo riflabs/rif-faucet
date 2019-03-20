@@ -31,4 +31,10 @@ contract('TokenFaucet', async (accounts) => {
 
     assert.equal(balance, previousBalance.toNumber() + tokenAmount);
   });
+
+  it('should store owner', async () => {
+    const owner = await tokenFaucet.owner();
+
+    assert.equal(owner, accounts[0]);
+  });
 });
