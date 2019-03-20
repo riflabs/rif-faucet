@@ -6,6 +6,8 @@ contract TokenFaucet {
     address public owner;
     ERC677TokenContract public tokenContract;
 
+    uint constant DISPENSE_VALUE = 1 * 10**18;
+
     constructor (ERC677TokenContract _tokenContract) public {
         owner = msg.sender;
         tokenContract = _tokenContract;
@@ -14,5 +16,9 @@ contract TokenFaucet {
     function recover () public {
         uint totalAmount = tokenContract.balanceOf(address(this));
         tokenContract.transfer(owner, totalAmount);
+    }
+
+    function dispense (address to) public {
+        tokenContract.transfer(to, DISPENSE_VALUE);
     }
 }

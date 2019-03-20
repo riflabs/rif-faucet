@@ -51,4 +51,18 @@ contract('TokenFaucet', async (accounts) => {
 
     assert.equal(balance, previousBalance.toNumber() + tokenAmount);
   });
+
+  it('should send one token to another account', async () => {
+    const tokenAmount = 10e18;
+    const account = accounts[1];
+
+    const previousBalance = await token.balanceOf(account);
+
+    await token.transfer(tokenFaucet.address, tokenAmount);
+    await tokenFaucet.dispense(account);
+
+    const balance = await token.balanceOf(account);
+
+    assert.equal(balance, previousBalance.toNumber() + 1e18);
+  });
 });
