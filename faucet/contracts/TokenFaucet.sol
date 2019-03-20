@@ -6,7 +6,7 @@ contract TokenFaucet {
     address public owner;
     ERC677TokenContract public tokenContract;
 
-    uint constant DISPENSE_VALUE = 1 * 10**18;
+    uint public dispenseValue = 1 * 10**18;
 
     constructor (ERC677TokenContract _tokenContract) public {
         owner = msg.sender;
@@ -19,6 +19,10 @@ contract TokenFaucet {
     }
 
     function dispense (address to) public {
-        tokenContract.transfer(to, DISPENSE_VALUE);
+        tokenContract.transfer(to, dispenseValue);
+    }
+
+    function setDispenseValue (uint value) public {
+        dispenseValue = value;
     }
 }

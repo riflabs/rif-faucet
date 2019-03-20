@@ -65,4 +65,14 @@ contract('TokenFaucet', async (accounts) => {
 
     assert.equal(balance, previousBalance.toNumber() + 1e18);
   });
+
+  it('should change tokens dispensed', async () => {
+    const tokenAmount = 2e18;
+
+    await tokenFaucet.setDispenseValue(tokenAmount);
+
+    const dispenseValue = await tokenFaucet.dispenseValue();
+
+    assert.equal(dispenseValue, tokenAmount);
+  });
 });
