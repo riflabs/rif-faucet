@@ -1,14 +1,22 @@
 const assert = require('assert');
+const ERC677TokenContract = artifacts.require('ERC677TokenContract');
 const TokenFaucet = artifacts.require('TokenFaucet');
 
 //tRIF contract: https://explorer.testnet.rsk.co/address/0xd8c5adcac8d465c5a2d0772b86788e014ddec516
 
 contract('TokenFaucet', async (accounts) => {
-  var tokenFaucet;
+  var tokenFaucet, token;
 
   beforeEach(async () => {
-    tokenFaucet = await TokenFaucet.new();
+    token = await ERC677TokenContract.new(accounts[0], 1e24);
+    tokenFaucet = await TokenFaucet.new(token.address);
   });
 
   it('should create contract', async () => { });
+
+  it('should store token address', async () => {
+    const actualTokenAddress = await tokenFaucet.tokenContract();
+
+    assert.equal(actualTokenAddress, token.address);
+  });
 });
