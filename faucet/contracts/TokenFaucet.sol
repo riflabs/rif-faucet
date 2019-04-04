@@ -6,10 +6,17 @@ contract TokenFaucet {
     address public owner;
     ERC677TokenContract public tokenContract;
 
+    mapping (address => uint) cannotDispenseUntil;
+
     uint public dispenseValue = 1 * 10**18;
 
     modifier onlyOwner () {
         require(msg.sender == owner);
+        _;
+    }
+
+    modifier canDispense (address to) {
+        require(cannotDispenseUntil[to] < now);
         _;
     }
 
@@ -23,8 +30,9 @@ contract TokenFaucet {
         tokenContract.transfer(owner, totalAmount);
     }
 
-    function dispense (address to) public {
+    function dispense (address to) public canDispense(to) {
         tokenContract.transfer(to, dispenseValue);
+        cannotDispenseUntil[to] = now + 1 days;
     }
 
     function setDispenseValue (uint value) public onlyOwner() {
