@@ -8,8 +8,6 @@ var bnChai = require('bn-chai');
 chai.use(bnChai(BN));
 const expect = chai.expect;
 
-//tRIF contract: https://explorer.testnet.rsk.co/address/0xd8c5adcac8d465c5a2d0772b86788e014ddec516
-
 contract('TokenFaucet', async (accounts) => {
   var tokenFaucet, token;
 
