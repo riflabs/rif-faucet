@@ -1,6 +1,8 @@
 # RIF Faucet
 
-At: [0xa98d30d3436f24886e0dd4bd440666dd1d140d5c](https://explorer.testnet.rsk.co/address/0xa98d30d3436f24886e0dd4bd440666dd1d140d5c).
+Deployed in RSK Testnet: [0x248b320687eBF655f9ee7f62f0388c79fBB7b2f4](https://explorer.testnet.rsk.co/address/0x248b320687eBF655f9ee7f62f0388c79fBB7b2f4).
+
+Faucet Web Client: [https://faucet.rifos.org](https://faucet.rifos.org).
 
 ## Usage
 
