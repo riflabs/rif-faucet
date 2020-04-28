@@ -17,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rootstock/rif-faucet.git"
+    "url": "git+https://github.com/riflabs/rif-faucet.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rootstock/rif-faucet/issues"
+    "url": "https://github.com/riflabs/rif-faucet/issues"
   },
-  "homepage": "https://github.com/rootstock/rif-faucet#readme"
+  "homepage": "https://github.com/riflabs/rif-faucet#readme"
 }
